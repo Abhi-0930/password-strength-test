@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Strength Checker</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <!-- <script src="script.js"></script> -->
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100%;
+            background-color: #201f21;
+        }
+
+        .input-box {
+            width: 400px;
+            max-width: 90%;
+            position: relative;
+        }
+
+        .input-box input {
+            width: 100%;
+            height: 60px;
+            padding: 0 20px;
+            border: 1px solid #ccc;
+            outline: none;
+            color: #fff;
+            background: #333;
+        }
+
+       
+
+        #message {
+            position: absolute;
+            color: white;
+            font-size: 15px;
+            display: none;
+        }
+
+        ::placeholder {
+            font-size: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="input-box">
+            <input type="password" id="password" placeholder="Enter your password">
+            
+            <p id="message">Password is <span id="strength"></span></p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            var pass = document.getElementById("password");
+            var msg = document.getElementById("message");
+            var str = document.getElementById("strength");
+
+            pass.addEventListener('input', () => {
+                if (pass.value.length > 0) {
+                    msg.style.display = "block";
+                    if (pass.value.length < 4) {
+                        str.innerHTML = "too weak";
+                        str.style.color = "red";
+                        pass.style.borderColor="red";
+                    } else if (pass.value.length >= 4 && pass.value.length < 8) {
+                        str.innerHTML = "weak";
+                        str.style.color = "orange";
+                        pass.style.borderColor="orange";
+                    } else if (pass.value.length >= 8 && pass.value.length < 12) {
+                        str.innerHTML = "medium";
+                        str.style.color = "yellow";
+                        pass.style.borderColor="yellow";
+                    } else {
+                        str.innerHTML = "strong";
+                        str.style.color = "green";
+                        pass.style.borderColor="green";
+                    }
+                } else {
+                    msg.style.display = "none";
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
